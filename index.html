@@ -24,24 +24,57 @@
                 <div class="text-gray-700 font-bold text-center">金</div>
                 <div class="text-gray-700 font-bold text-center">土</div>
             </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">1限</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">2限</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">3限</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">4限</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">5限</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1">
-                <div class="text-gray-700 text-center">6限</div>
-            </div>
+            <div id="timetable"></div>
         </div>
     </body>
+    <script>
+        // 時間割APIにアクセス
+        // axios
+
+        // {
+        //     "月": [["202", "202", "202"], [], [], [],],
+        //     "火": [],
+        //     "水": [],
+        // };
+
+        axios.get("https://self-study-room.hal2016.com/").then((response) => {
+            const createTableContent = (text) => {
+                const p = document.createElement("p");
+                p.classList.add("text-gray-700", "text-center");
+                p.innerHTML = text;
+                return p;
+            };
+
+            const data = response.data.data.map((item) => {
+                return item.timetable.map((timeItem) => {
+                    return timeItem.available.concat(timeItem.noAvailable);
+                });
+            });
+
+            data.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.classList.add(
+                    "grid",
+                    "grid-rows-8",
+                    "grid-flow-col",
+                    "gap-1"
+                );
+                div.appendChild(createTableContent(`${index + 1}限`));
+
+                // ここに空き教室の追加の処理を書く
+                item.forEach((room) => {
+                    // 後で直す
+                    room.forEach((r) => {
+                        div.appendChild(createTableContent(r));
+                    });
+                });
+
+                document.getElementById("timetable").appendChild(div);
+            });
+
+            // forof文
+            // for (const item of timetable) {}
+        });
+        // それぞれのタグに取得した部屋番号を入力
+    </script>
 </html>
