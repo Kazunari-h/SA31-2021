@@ -40,7 +40,7 @@
         axios.get("https://self-study-room.hal2016.com/").then((response) => {
             const createTableContent = (text) => {
                 const p = document.createElement("p");
-                p.classList.add("text-gray-700", "text-center");
+                p.classList.add("text-gray-700", "text-center", "w-1/7");
                 p.innerHTML = text;
                 return p;
             };
@@ -51,22 +51,26 @@
                 });
             });
 
+            const div = document.createElement("div");
+            div.classList.add("grid", "grid-rows-6", "grid-flow-col", "gap-1");
             data.forEach((item, index) => {
-                const div = document.createElement("div");
-                div.classList.add(
-                    "grid",
-                    "grid-rows-8",
-                    "grid-flow-col",
-                    "gap-1"
-                );
                 div.appendChild(createTableContent(`${index + 1}限`));
+            });
 
+            data.forEach((item, index) => {
+                item.pop();
                 // ここに空き教室の追加の処理を書く
                 item.forEach((room) => {
                     // 後で直す
-                    room.forEach((r) => {
-                        div.appendChild(createTableContent(r));
-                    });
+                    const tableRow = document.createElement("div");
+                    if (room.length > 0) {
+                        room.forEach((r) => {
+                            tableRow.appendChild(createTableContent(r));
+                        });
+                    } else {
+                        tableRow.appendChild(createTableContent("なし"));
+                    }
+                    div.appendChild(tableRow);
                 });
 
                 document.getElementById("timetable").appendChild(div);
