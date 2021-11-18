@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ひろさわかずなり | HAL TOKYO WEB学科 3年</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
+    </head>
+    <body>
+        <!-- メインビジュアル -->
+
+        <!-- 自己紹介 -->
+        <!-- 名前 ひとこと -->
+
+        <!-- 今やってること -->
+        <!-- WEB（システム・デザイン・ディレクション）に関する -->
+
+        <!-- 今後取り組みたいこと -->
+        <!-- 飲食に関係する自社サービスをリリース -->
+
+        <!-- 問い合わせ -->
+
+        <section
+            class="container p-4"
+            x-data="{
+            inputList: [
+            {
+                title: 'お名前'
+                type: 'text'
+            }, 
+            {
+                title: '所属'
+                type: 'text'
+            }, 
+            {
+                title: 'メール'
+                type: 'email'
+            }, 
+            {
+                title: '件名'
+                type: 'text'
+            }, 
+            {
+                title: '本文'
+                type: 'textarea'
+            }]
+        }"
+        >
+            <template x-for=" title in inputList">
+                <div class="flex justify-between items-center">
+                    <label for="name" x-text="title"></label>
+                    <input
+                        type="text"
+                        class="border rounded px-2 py-1 bg-gray-50"
+                        id="name"
+                        name="name"
+                    />
+                </div>
+            </template>
+        </section>
+        <!-- 名前
+        メール
+        所属
+        タイトル
+        本文 -->
+    </body>
+</html>
