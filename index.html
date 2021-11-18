@@ -16,80 +16,52 @@
         <div class="w-9/12 mx-auto p-4">
             <h1 class="text-center">自習室の時間割</h1>
             <!-- 曜日ごとの時間割 -->
-            <div class="grid grid-cols-7 gap-1">
+            <div
+                id="root"
+                x-data="{
+                    weekday: ['月', '火', '水', '木', '金', '土'], 
+                    data: [
+                        ['245', '245', '245', '245', '245', '245'],
+                        ['245', '245', '245', '245', '245', '245'],
+                        ['245', '245', '245', '245', '245', '245'],
+                        ['245', '245', '245', '245', '245', '245'],
+                        ['245', '245', '245', '245', '245', '245'],
+                        ['245', '245', '245', '245', '245', '245'],
+                    ]
+                }"
+                class="grid grid-cols-7 gap-1"
+            >
                 <div class="text-white font-bold bg-black"></div>
-                <div class="text-gray-700 font-bold text-center">月</div>
-                <div class="text-gray-700 font-bold text-center">火</div>
-                <div class="text-gray-700 font-bold text-center">水</div>
-                <div class="text-gray-700 font-bold text-center">木</div>
-                <div class="text-gray-700 font-bold text-center">金</div>
-                <div class="text-gray-700 font-bold text-center">土</div>
+                <template x-for="text in weekday">
+                    <div
+                        x-text="text"
+                        class="text-gray-700 font-bold text-center"
+                    ></div>
+                </template>
+
+                <div class="grid grid-rows-6 grid-flow-col gap-1">
+                    <template x-for=" (value, index) in data">
+                        <p
+                            x-text="`${index + 1}限`"
+                            class="text-gray-700 text-center w-1/7"
+                        ></p>
+                    </template>
+
+                    <!-- 日付分 -->
+                    <template x-for="(item, index) in data">
+                        <div class="flex flex-row">
+                            <!-- 時間分 -->
+                            <template x-for="room in item">
+                                <p
+                                    x-text="room"
+                                    class="text-gray-700 text-center w-1/7"
+                                ></p>
+                            </template>
+                        </div>
+                    </template>
+                </div>
             </div>
             <div id="timetable"></div>
         </div>
-
-        <div
-            id="root"
-            x-data="{weekday: ['月', '火', '水', '木', '金', '土']}"
-            class="grid grid-cols-6 gap-1"
-        >
-            <template>
-                <div class="text-gray-700 font-bold text-center"></div>
-            </template>
-        </div>
     </body>
-    <script>
-        // 時間割APIにアクセス
-        // axios
-
-        // {
-        //     "月": [["202", "202", "202"], [], [], [],],
-        //     "火": [],
-        //     "水": [],
-        // };
-
-        axios.get("https://self-study-room.hal2016.com/").then((response) => {
-            const createTableContent = (text) => {
-                const p = document.createElement("p");
-                p.classList.add("text-gray-700", "text-center", "w-1/7");
-                p.innerHTML = text;
-                return p;
-            };
-
-            const data = response.data.data.map((item) => {
-                return item.timetable.map((timeItem) => {
-                    return timeItem.available.concat(timeItem.noAvailable);
-                });
-            });
-
-            const div = document.createElement("div");
-            div.classList.add("grid", "grid-rows-6", "grid-flow-col", "gap-1");
-            data.forEach((item, index) => {
-                div.appendChild(createTableContent(`${index + 1}限`));
-            });
-
-            data.forEach((item, index) => {
-                item.pop();
-                // ここに空き教室の追加の処理を書く
-                item.forEach((room) => {
-                    // 後で直す
-                    const tableRow = document.createElement("div");
-                    if (room.length > 0) {
-                        room.forEach((r) => {
-                            tableRow.appendChild(createTableContent(r));
-                        });
-                    } else {
-                        tableRow.appendChild(createTableContent("なし"));
-                    }
-                    div.appendChild(tableRow);
-                });
-
-                document.getElementById("timetable").appendChild(div);
-            });
-
-            // forof文
-            // for (const item of timetable) {}
-        });
-        // それぞれのタグに取得した部屋番号を入力
-    </script>
 </html>
