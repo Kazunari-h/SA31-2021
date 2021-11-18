@@ -28,33 +28,31 @@
 
         <section
             class="container p-4"
-            x-data="{
-            inputList: [
-            {
-                title: 'お名前'
+            x-data="{inputList: [{
+                title: 'お名前',
                 type: 'text'
             }, 
             {
-                title: '所属'
+                title: '所属',
                 type: 'text'
             }, 
             {
-                title: 'メール'
+                title: 'メール',
                 type: 'email'
             }, 
             {
-                title: '件名'
+                title: '件名',
                 type: 'text'
             }, 
             {
-                title: '本文'
+                title: '本文',
                 type: 'textarea'
             }]
         }"
         >
-            <template x-for=" title in inputList">
+            <template x-for=" item in inputList">
                 <div class="flex justify-between items-center">
-                    <label for="name" x-text="title"></label>
+                    <label for="name" x-text="item.title"></label>
                     <input
                         type="text"
                         class="border rounded px-2 py-1 bg-gray-50"
