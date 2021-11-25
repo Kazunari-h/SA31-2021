@@ -10,7 +10,7 @@
             rel="stylesheet"
         />
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="//unpkg.com/alpinejs" defer></script>
+        <script src="https://unpkg.com/alpinejs" defer></script>
     </head>
     <body>
         <!-- メインビジュアル -->
@@ -54,7 +54,7 @@
                 <div class="flex justify-between items-center">
                     <label for="name" x-text="item.title"></label>
                     <input
-                        type="text"
+                        x-bind:type="item.type"
                         class="border rounded px-2 py-1 bg-gray-50"
                         id="name"
                         name="name"
