@@ -51,14 +51,23 @@
         }"
         >
             <template x-for=" item in inputList">
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center my-4">
                     <label for="name" x-text="item.title"></label>
-                    <input
-                        x-bind:type="item.type"
-                        class="border rounded px-2 py-1 bg-gray-50"
-                        id="name"
-                        name="name"
-                    />
+
+                    <template x-if="item.type === 'textarea'">
+                        <textarea
+                            class="border rounded px-2 py-1 bg-gray-50"
+                            name=""
+                        ></textarea>
+                    </template>
+                    <template x-if="item.type !== 'textarea'">
+                        <input
+                            x-bind:type="item.type"
+                            class="border rounded px-2 py-1 bg-gray-50"
+                            id="name"
+                            name="name"
+                        />
+                    </template>
                 </div>
             </template>
         </section>
