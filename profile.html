@@ -29,7 +29,9 @@
 
         <section class="container p-4" x-data="inputData">
             <template x-for=" item in inputList">
-                <div class="flex justify-between items-center my-4">
+                <div
+                    class="w-1/2 mx-auto flex justify-between items-center my-2"
+                >
                     <label
                         for="name"
                         class="tracking-widest text-gray-600 text-sm"
@@ -43,16 +45,27 @@
                         ></textarea>
                     </template>
                     <template x-if="item.type !== 'textarea'">
-                        <div>
+                        <div class="w-3/4">
                             <input
+                                x-init="$watch('item.value', () => {
+                                    console.log('validate')
+                                    item.validate()
+                                })"
                                 x-bind:type="item.type"
                                 x-model="item.value"
-                                class="border rounded px-2 py-1 bg-gray-50"
+                                class="
+                                    w-full
+                                    border
+                                    rounded
+                                    px-4
+                                    py-2
+                                    bg-gray-50
+                                "
                                 id="name"
                                 name="name"
                             />
                             <p
-                                class="text-xs"
+                                class="text-xs h-4"
                                 x-bind:class=" !item.message ? 'text-gray-400' : 'text-red-400'"
                                 x-text="item.message"
                             ></p>

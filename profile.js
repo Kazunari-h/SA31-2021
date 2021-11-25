@@ -7,7 +7,7 @@ Alpine.data("inputData", () => ({
             message: "",
             validate() {
                 // 1文字以上48文字以下
-                if (this.value.length > 0 && this.value.length <= 48) {
+                if (this.value.length > 0 && this.value.length <= 4) {
                     this.message = "";
                 } else {
                     this.message =
