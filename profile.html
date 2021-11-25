@@ -10,7 +10,8 @@
             rel="stylesheet"
         />
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script src="https://unpkg.com/alpinejs"></script>
+        <script src="./profile.js"></script>
     </head>
     <body>
         <!-- メインビジュアル -->
@@ -26,33 +27,14 @@
 
         <!-- 問い合わせ -->
 
-        <section
-            class="container p-4"
-            x-data="{inputList: [{
-                title: 'お名前',
-                type: 'text'
-            }, 
-            {
-                title: '所属',
-                type: 'text'
-            }, 
-            {
-                title: 'メール',
-                type: 'email'
-            }, 
-            {
-                title: '件名',
-                type: 'text'
-            }, 
-            {
-                title: '本文',
-                type: 'textarea'
-            }]
-        }"
-        >
+        <section class="container p-4" x-data="inputData">
             <template x-for=" item in inputList">
                 <div class="flex justify-between items-center my-4">
-                    <label for="name" x-text="item.title"></label>
+                    <label
+                        for="name"
+                        class="tracking-widest text-gray-600 text-sm"
+                        x-text="item.title"
+                    ></label>
 
                     <template x-if="item.type === 'textarea'">
                         <textarea
@@ -61,12 +43,20 @@
                         ></textarea>
                     </template>
                     <template x-if="item.type !== 'textarea'">
-                        <input
-                            x-bind:type="item.type"
-                            class="border rounded px-2 py-1 bg-gray-50"
-                            id="name"
-                            name="name"
-                        />
+                        <div>
+                            <input
+                                x-bind:type="item.type"
+                                x-model="item.value"
+                                class="border rounded px-2 py-1 bg-gray-50"
+                                id="name"
+                                name="name"
+                            />
+                            <p
+                                class="text-xs"
+                                x-bind:class=" !item.message ? 'text-gray-400' : 'text-red-400'"
+                                x-text="item.message"
+                            ></p>
+                        </div>
                     </template>
                 </div>
             </template>
