@@ -5,23 +5,67 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ひろさわかずなり | HAL TOKYO WEB学科 3年</title>
-        <link
-            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-            rel="stylesheet"
-        />
+        <link rel="stylesheet" href="style.css" />
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/alpinejs"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
         <script src="./profile.js"></script>
     </head>
     <body>
         <!-- メインビジュアル -->
+        <section>
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <figure class="swiper-slide aspect-w-16 aspect-h-9">
+                        <img
+                            src="https://images.unsplash.com/photo-1545048702-79362596cdc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                            alt=""
+                        />
+                    </figure>
+                    <figure class="swiper-slide aspect-w-16 aspect-h-9">
+                        <img
+                            src="https://images.unsplash.com/photo-1610887316235-8bc2f8326a61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                            alt=""
+                        />
+                    </figure>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </section>
+
+        <!-- 名前 ひとこと -->
+        <section>
+            <h1 class="font-kiwi">Kazunari Hirosawa</h1>
+        </section>
 
         <!-- 自己紹介 -->
-        <!-- 名前 ひとこと -->
+        <section></section>
 
         <!-- 今やってること -->
-        <!-- WEB（システム・デザイン・ディレクション）に関する -->
+        <section></section>
 
+        <!-- WEB（システム・デザイン・ディレクション）に関する -->
         <!-- 今後取り組みたいこと -->
         <!-- 飲食に関係する自社サービスをリリース -->
 
